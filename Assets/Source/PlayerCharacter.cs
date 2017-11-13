@@ -55,25 +55,22 @@ public class PlayerCharacter : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.W))
         {
             // If the player is not leaning up, left, and right
+            // Lean up
             if (isLeaningUp == false && isLeaningLeft == false && isLeaningRight == false)
             {
-                // Set the player to be leaning up
                 isLeaningUp = true;
-
-                // Set the position of the player to be the y-axis of the top lean navpoint
                 position.y = topLeanNavPoint.transform.position.y;
             }
         }
 
+        // If the player is leaning up
         if (isLeaningUp == true)
         {
             // If the player releases the lean up button
+            // Stop leaning up
             if (Input.GetKeyUp(KeyCode.W))
             {
-                // Set the player to not be leaning up
                 isLeaningUp = false;
-
-                // Set the player's position to be it's starting point
                 position = startingPos;
             }
         }
@@ -86,25 +83,22 @@ public class PlayerCharacter : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.A))
         {
             // If the player is not leaning up, left, and right
+            // Lean left
             if (isLeaningUp == false && isLeaningLeft == false && isLeaningRight == false)
             {
-                // Set the player to be leaning left
                 isLeaningLeft = true;
-
-                // Set the position of the player to be the x-axis of the left lean navpoint
                 position.x = leftLeanNavPoint.transform.position.x;
             }
         }
 
+        // If the player is leaning left
         if (isLeaningLeft == true)
         {
             // If the player releases the lean left button
+            // Stop leaning left
             if (Input.GetKeyUp(KeyCode.A))
             {
-                // Set the player to not be leaning left
                 isLeaningLeft = false;
-
-                // Set the player's position to be it's starting point
                 position = startingPos;
             }
         }
@@ -117,25 +111,22 @@ public class PlayerCharacter : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.D))
         {
             // If the player is not leaning up, left, and right
+            // Lean right
             if (isLeaningUp == false && isLeaningLeft == false && isLeaningRight == false)
             {
-                // Set the player to be leaning right
                 isLeaningRight = true;
-
-                // Set the position of the player to be the x-axis of the right lean navpoint
                 position.x = rightLeanNavPoint.transform.position.x;
             }
         }
 
+        // If the player is leaning right
         if (isLeaningRight == true)
         {
             // If the player releases the lean right button
+            // Stop leaning right
             if (Input.GetKeyUp(KeyCode.D))
             {
-                // Set the player to not be leaning right
                 isLeaningRight = false;
-
-                // Set the player's position to be it's starting point
                 position = startingPos;
             }
         }
