@@ -67,7 +67,7 @@ public class PlayerCharacter : MonoBehaviour
     private void controlLeaningUp()
     {
         // If the player presses the lean up button
-        if (Input.GetKeyDown(KeyCode.W) && canLean == true)
+        if (Input.GetButtonDown("LeanUp") && canLean == true)
         {
             // If the player is not leaning up, left, and right
             // Lean up
@@ -83,7 +83,7 @@ public class PlayerCharacter : MonoBehaviour
         {
             // If the player releases the lean up button
             // Stop leaning up
-            if (Input.GetKeyUp(KeyCode.W))
+            if (Input.GetButtonUp("LeanUp"))
             {
                 isLeaningUp = false;
                 position = startingPos;
@@ -98,7 +98,7 @@ public class PlayerCharacter : MonoBehaviour
     private void controlLeaningLeft()
     {
         // If the player presses the lean left button
-        if (Input.GetKeyDown(KeyCode.A) && canLean == true)
+        if (Input.GetButtonDown("LeanLeft") && canLean == true)
         {
             // If the player is not leaning up, left, and right
             // Lean left
@@ -114,7 +114,7 @@ public class PlayerCharacter : MonoBehaviour
         {
             // If the player releases the lean left button
             // Stop leaning left
-            if (Input.GetKeyUp(KeyCode.A))
+            if (Input.GetButtonUp("LeanLeft"))
             {
                 isLeaningLeft = false;
                 position = startingPos;
@@ -129,7 +129,7 @@ public class PlayerCharacter : MonoBehaviour
     private void controlLeaningRight()
     {
         // If the player presses the lean right button
-        if (Input.GetKeyDown(KeyCode.D) && canLean == true)
+        if (Input.GetButtonDown("LeanRight") && canLean == true)
         {
             // If the player is not leaning up, left, and right
             // Lean right
@@ -145,7 +145,7 @@ public class PlayerCharacter : MonoBehaviour
         {
             // If the player releases the lean right button
             // Stop leaning right
-            if (Input.GetKeyUp(KeyCode.D))
+            if (Input.GetButtonUp("LeanRight"))
             {
                 isLeaningRight = false;
                 position = startingPos;
