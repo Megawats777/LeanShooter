@@ -33,6 +33,24 @@ public class PlayerCharacter : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // Control lean actions
+        controlLeanActions();
+
+        // Always blend to the player's position
+        transform.position = Vector3.Lerp(transform.position, position, Time.deltaTime * leanAnimSpeed);
+    }
+
+    // Control Lean actions
+    private void controlLeanActions()
+    {
+        controlLeaningUp();
+        controlLeaningLeft();
+        controlLeaningRight();
+    }
+
+    // Control leaning up
+    private void controlLeaningUp()
+    {
         // If the player presses the lean up button
         if (Input.GetKeyDown(KeyCode.W))
         {
@@ -59,10 +77,11 @@ public class PlayerCharacter : MonoBehaviour
                 position = startingPos;
             }
         }
+    }
 
-
-
-
+    // Control leaning left
+    private void controlLeaningLeft()
+    {
         // If the player presses the lean left button
         if (Input.GetKeyDown(KeyCode.A))
         {
@@ -89,9 +108,11 @@ public class PlayerCharacter : MonoBehaviour
                 position = startingPos;
             }
         }
+    }
 
-
-
+    // Control leaning right
+    private void controlLeaningRight()
+    {
         // If the player presses the lean right button
         if (Input.GetKeyDown(KeyCode.D))
         {
@@ -118,9 +139,6 @@ public class PlayerCharacter : MonoBehaviour
                 position = startingPos;
             }
         }
-
-        // Always blend to the player's position
-        transform.position = Vector3.Lerp(transform.position, position, Time.deltaTime * leanAnimSpeed);
     }
 
 

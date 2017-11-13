@@ -5,7 +5,6 @@ using UnityEngine;
 public class GameCamera : MonoBehaviour
 {
 
-
     // External references
     private PlayerCharacter player;
 
