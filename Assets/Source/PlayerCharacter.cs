@@ -4,6 +4,15 @@ using UnityEngine;
 
 public class PlayerCharacter : MonoBehaviour
 {
+    /*--Lean movement properties--*/
+
+
+    // Can the player lean
+    public bool canLean = true;
+
+    // Lean enable delay
+    public float enableLeanDelay = 0.15f;
+
     // Lean animation speed
     public float leanAnimSpeed = 10.0f;
 
@@ -19,9 +28,13 @@ public class PlayerCharacter : MonoBehaviour
     public LeanNavPoint rightLeanNavPoint;
 
 
+    /*--Lean movement properties end--*/
+
+
     // Player status variables
     private Vector3 startingPos;
     private Vector3 position;
+
 
     // Use this for initialization
     void Start()
@@ -33,8 +46,10 @@ public class PlayerCharacter : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
         // Control lean actions
         controlLeanActions();
+
 
         // Always blend to the player's position
         transform.position = Vector3.Lerp(transform.position, position, Time.deltaTime * leanAnimSpeed);
@@ -52,7 +67,7 @@ public class PlayerCharacter : MonoBehaviour
     private void controlLeaningUp()
     {
         // If the player presses the lean up button
-        if (Input.GetKeyDown(KeyCode.W))
+        if (Input.GetKeyDown(KeyCode.W) && canLean == true)
         {
             // If the player is not leaning up, left, and right
             // Lean up
@@ -72,6 +87,9 @@ public class PlayerCharacter : MonoBehaviour
             {
                 isLeaningUp = false;
                 position = startingPos;
+
+                canLean = false;
+                Invoke("allowPlayerToLean", enableLeanDelay);
             }
         }
     }
@@ -80,7 +98,7 @@ public class PlayerCharacter : MonoBehaviour
     private void controlLeaningLeft()
     {
         // If the player presses the lean left button
-        if (Input.GetKeyDown(KeyCode.A))
+        if (Input.GetKeyDown(KeyCode.A) && canLean == true)
         {
             // If the player is not leaning up, left, and right
             // Lean left
@@ -100,6 +118,9 @@ public class PlayerCharacter : MonoBehaviour
             {
                 isLeaningLeft = false;
                 position = startingPos;
+
+                canLean = false;
+                Invoke("allowPlayerToLean", enableLeanDelay);
             }
         }
     }
@@ -108,7 +129,7 @@ public class PlayerCharacter : MonoBehaviour
     private void controlLeaningRight()
     {
         // If the player presses the lean right button
-        if (Input.GetKeyDown(KeyCode.D))
+        if (Input.GetKeyDown(KeyCode.D) && canLean == true)
         {
             // If the player is not leaning up, left, and right
             // Lean right
@@ -128,8 +149,18 @@ public class PlayerCharacter : MonoBehaviour
             {
                 isLeaningRight = false;
                 position = startingPos;
+
+                canLean = false;
+                Invoke("allowPlayerToLean", enableLeanDelay);
             }
         }
+    }
+
+
+    // Allow the player to lean
+    private void allowPlayerToLean()
+    {
+        canLean = true;
     }
 
 
