@@ -31,6 +31,10 @@ public class PlayerCharacter : MonoBehaviour
     /*--Lean movement properties end--*/
 
 
+    // Can the player fire
+    public bool canFire = false;
+    public bool targetHit = false;
+
     // Player status variables
     private Vector3 startingPos;
     private Vector3 position;
@@ -50,6 +54,63 @@ public class PlayerCharacter : MonoBehaviour
         // Control lean actions
         controlLeanActions();
 
+
+        // If the player presses the fire button and can fire
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            targetHit = false;
+
+            // Find all the targets in the level
+            foreach (Target currentTarget in FindObjectsOfType<Target>())
+            {
+
+                // If one of the target's lane position is middle and the player is leaning up and the current target is enabled
+                if (currentTarget.lanePosition == LanePositions.Middle && isLeaningUp == true && currentTarget.isEnabled == true)
+                {
+                    // Mark that a target was hit
+                    targetHit = true;
+
+                    // Add to the player's score
+
+                    // Destroy the current target
+                    currentTarget.disableTarget();
+                }
+
+                // If one of the target's lane position is left and the player is leaning left and the current target is enabled
+                else if (currentTarget.lanePosition == LanePositions.Left && isLeaningLeft == true && currentTarget.isEnabled == true)
+                {
+                    // Mark that a target was hit
+                    targetHit = true;
+
+                    // Add to the player's score
+
+                    // Destroy the current target
+                    currentTarget.disableTarget();
+                }
+
+                // If one of the target's lane position is right and the player is leaning right and the current target is enabled
+                else if (currentTarget.lanePosition == LanePositions.Right && isLeaningRight == true && currentTarget.isEnabled == true)
+                {
+                    // Mark that a target was hit
+                    targetHit = true;
+
+                    // Add to the player's score
+
+                    // Destroy the current target
+                    currentTarget.disableTarget();
+                }
+            }
+
+            // If a target was not hit
+            if (targetHit == false)
+            {
+                // Reduce the player's score
+                print("No target hit");
+            }
+
+            // Do not allow the player to fire
+            canFire = false;
+        }
 
         // Always blend to the player's position
         transform.position = Vector3.Lerp(transform.position, position, Time.deltaTime * leanAnimSpeed);
@@ -73,6 +134,7 @@ public class PlayerCharacter : MonoBehaviour
             // Lean up
             if (isLeaningUp == false && isLeaningLeft == false && isLeaningRight == false)
             {
+                canFire = true;
                 isLeaningUp = true;
                 position.y = topLeanNavPoint.transform.position.y;
             }
@@ -85,6 +147,7 @@ public class PlayerCharacter : MonoBehaviour
             // Stop leaning up
             if (Input.GetButtonUp("LeanUp"))
             {
+                canFire = false;
                 isLeaningUp = false;
                 position = startingPos;
 
