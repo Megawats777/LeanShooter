@@ -40,6 +40,16 @@ public class PlayerCharacter : MonoBehaviour
     private Vector3 position;
 
 
+    // External references
+    private TargetManager targetManager;
+
+
+    // Called before start
+    private void Awake()
+    {
+        targetManager = FindObjectOfType<TargetManager>();
+    }
+
     // Use this for initialization
     void Start()
     {
@@ -151,6 +161,7 @@ public class PlayerCharacter : MonoBehaviour
                 isLeaningUp = false;
                 position = startingPos;
 
+                targetManager.selectTargetToEnable();
                 canLean = false;
                 Invoke("allowPlayerToLean", enableLeanDelay);
             }
@@ -184,6 +195,7 @@ public class PlayerCharacter : MonoBehaviour
                 isLeaningLeft = false;
                 position = startingPos;
 
+                targetManager.selectTargetToEnable();
                 canLean = false;
                 Invoke("allowPlayerToLean", enableLeanDelay);
             }
@@ -217,6 +229,7 @@ public class PlayerCharacter : MonoBehaviour
                 isLeaningRight = false;
                 position = startingPos;
 
+                targetManager.selectTargetToEnable();
                 canLean = false;
                 Invoke("allowPlayerToLean", enableLeanDelay);
             }

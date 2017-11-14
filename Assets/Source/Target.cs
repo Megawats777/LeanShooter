@@ -25,7 +25,7 @@ public class Target : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        enableTarget();
+        
     }
 
     // Update is called once per frame
