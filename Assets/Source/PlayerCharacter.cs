@@ -56,7 +56,7 @@ public class PlayerCharacter : MonoBehaviour
 
 
         // If the player presses the fire button and can fire
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space) && canFire == true)
         {
             targetHit = false;
 
@@ -167,6 +167,7 @@ public class PlayerCharacter : MonoBehaviour
             // Lean left
             if (isLeaningUp == false && isLeaningLeft == false && isLeaningRight == false)
             {
+                canFire = true;
                 isLeaningLeft = true;
                 position.x = leftLeanNavPoint.transform.position.x;
             }
@@ -179,6 +180,7 @@ public class PlayerCharacter : MonoBehaviour
             // Stop leaning left
             if (Input.GetButtonUp("LeanLeft"))
             {
+                canFire = false;
                 isLeaningLeft = false;
                 position = startingPos;
 
@@ -198,6 +200,7 @@ public class PlayerCharacter : MonoBehaviour
             // Lean right
             if (isLeaningUp == false && isLeaningLeft == false && isLeaningRight == false)
             {
+                canFire = true;
                 isLeaningRight = true;
                 position.x = rightLeanNavPoint.transform.position.x;
             }
@@ -210,6 +213,7 @@ public class PlayerCharacter : MonoBehaviour
             // Stop leaning right
             if (Input.GetButtonUp("LeanRight"))
             {
+                canFire = false;
                 isLeaningRight = false;
                 position = startingPos;
 
