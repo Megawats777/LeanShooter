@@ -144,6 +144,13 @@ public class PlayerCharacter : MonoBehaviour
             // Lean up
             if (isLeaningUp == false && isLeaningLeft == false && isLeaningRight == false)
             {
+                // If the current target to destroy is not in the middle lane
+                // Destroy the current target
+                if (targetManager.targetToDestroy.lanePosition != LanePositions.Middle)
+                {
+                    targetManager.targetToDestroy.disableTarget();
+                }
+
                 canFire = true;
                 isLeaningUp = true;
                 position.y = topLeanNavPoint.transform.position.y;
@@ -178,6 +185,14 @@ public class PlayerCharacter : MonoBehaviour
             // Lean left
             if (isLeaningUp == false && isLeaningLeft == false && isLeaningRight == false)
             {
+                // If the current target to destroy is not in the left lane
+                // Destroy the current target
+                if (targetManager.targetToDestroy.lanePosition != LanePositions.Left)
+                {
+                    targetManager.targetToDestroy.disableTarget();
+                }
+
+
                 canFire = true;
                 isLeaningLeft = true;
                 position.x = leftLeanNavPoint.transform.position.x;
@@ -212,6 +227,14 @@ public class PlayerCharacter : MonoBehaviour
             // Lean right
             if (isLeaningUp == false && isLeaningLeft == false && isLeaningRight == false)
             {
+                // If the current target to destroy is not in the right lane
+                // Destroy the current target
+                if (targetManager.targetToDestroy.lanePosition != LanePositions.Right)
+                {
+                    targetManager.targetToDestroy.disableTarget();
+                }
+
+
                 canFire = true;
                 isLeaningRight = true;
                 position.x = rightLeanNavPoint.transform.position.x;

@@ -7,8 +7,9 @@ public class TargetManager : MonoBehaviour
     // A list of all the target's in the level
     private Target[] targetList;
 
-    // Can a target be enabled
-    public bool canEnableTarget = true;
+    // The target to destroy
+    [HideInInspector]
+    public Target targetToDestroy;
 
     // The previous selection index num
     private int previousSelectionIndexNum = -1;
@@ -23,7 +24,6 @@ public class TargetManager : MonoBehaviour
     void Start()
     {
         selectTargetToEnable();
-        canEnableTarget = false;
     }
 
     // Update is called once per frame
@@ -49,6 +49,7 @@ public class TargetManager : MonoBehaviour
         {
             previousSelectionIndexNum = selectionIndex;
             targetList[selectionIndex].enableTarget();
+            targetToDestroy = targetList[selectionIndex];
         }
     }
 }
