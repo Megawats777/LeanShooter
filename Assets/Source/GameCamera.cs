@@ -24,6 +24,12 @@ public class GameCamera : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+    }
+
+    // Called after update
+    private void LateUpdate()
+    {
         // Always follow the player's position
         transform.position = player.transform.position;
     }
