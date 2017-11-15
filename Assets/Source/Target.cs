@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class Target : MonoBehaviour
 {
+    // Scale animation speed
+    public float scaleAnimSpeed = 8.0f;
+
     // The current scale
     [HideInInspector]
     public Vector3 scale = Vector3.zero;
@@ -19,20 +22,31 @@ public class Target : MonoBehaviour
     // Called before start
     private void Awake()
     {
-        
+
     }
 
     // Use this for initialization
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
     void Update()
     {
+        // If the target is enabled
         // Always blend to the desired scale
-        transform.localScale = Vector3.Lerp(transform.localScale, scale, Time.deltaTime * 3.0f);
+        if (isEnabled == true)
+        {
+            transform.localScale = Vector3.Lerp(transform.localScale, scale, Time.deltaTime * scaleAnimSpeed);
+        }
+
+        // Otherwise
+        // Snap to the desired scale
+        else
+        {
+            transform.localScale = scale;
+        }
     }
 
     // Enable the target

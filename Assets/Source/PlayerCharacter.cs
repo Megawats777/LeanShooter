@@ -144,12 +144,8 @@ public class PlayerCharacter : MonoBehaviour
             // Lean up
             if (isLeaningUp == false && isLeaningLeft == false && isLeaningRight == false)
             {
-                // If the current target to destroy is not in the middle lane
-                // Destroy the current target
-                //if (targetManager.targetToDestroy.lanePosition != LanePositions.Middle)
-                //{
-                //    targetManager.targetToDestroy.disableTarget();
-                //}
+                // Check if the player leaned in the wrong direction
+                checkIfPlayerLeanedInWrongDirection(LanePositions.Middle);
 
                 canFire = true;
                 isLeaningUp = true;
@@ -168,12 +164,8 @@ public class PlayerCharacter : MonoBehaviour
                 isLeaningUp = false;
                 position = startingPos;
 
-                // If the current target to destroy is disabled
-                // Enable a new target
-                if (targetManager.targetToDestroy.isEnabled == false)
-                {
-                    targetManager.selectTargetToEnable();
-                }
+                // Perform a check on if a new target should be enabled
+                targetManager.performNewEnabledTargetCheck();
 
                 canLean = false;
                 Invoke("allowPlayerToLean", enableLeanDelay);
@@ -191,12 +183,8 @@ public class PlayerCharacter : MonoBehaviour
             // Lean left
             if (isLeaningUp == false && isLeaningLeft == false && isLeaningRight == false)
             {
-                // If the current target to destroy is not in the left lane
-                // Destroy the current target
-                //if (targetManager.targetToDestroy.lanePosition != LanePositions.Left)
-                //{
-                //    targetManager.targetToDestroy.disableTarget();
-                //}
+                // Check if the player leaned in the wrong direction
+                checkIfPlayerLeanedInWrongDirection(LanePositions.Left);
 
 
                 canFire = true;
@@ -217,12 +205,8 @@ public class PlayerCharacter : MonoBehaviour
                 position = startingPos;
 
 
-                // If the current target to destroy is disabled
-                // Enable a new target
-                if (targetManager.targetToDestroy.isEnabled == false)
-                {
-                    targetManager.selectTargetToEnable();
-                }
+                // Perform a check on if a new target should be enabled
+                targetManager.performNewEnabledTargetCheck();
 
                 canLean = false;
                 Invoke("allowPlayerToLean", enableLeanDelay);
@@ -240,12 +224,8 @@ public class PlayerCharacter : MonoBehaviour
             // Lean right
             if (isLeaningUp == false && isLeaningLeft == false && isLeaningRight == false)
             {
-                // If the current target to destroy is not in the right lane
-                // Destroy the current target
-                //if (targetManager.targetToDestroy.lanePosition != LanePositions.Right)
-                //{
-                //    targetManager.targetToDestroy.disableTarget();
-                //}
+                // Check if the player leaned in the wrong direction
+                checkIfPlayerLeanedInWrongDirection(LanePositions.Right);
 
 
                 canFire = true;
@@ -266,12 +246,8 @@ public class PlayerCharacter : MonoBehaviour
                 position = startingPos;
 
 
-                // If the current target to destroy is disabled
-                // Enable a new target
-                if (targetManager.targetToDestroy.isEnabled == false)
-                {
-                    targetManager.selectTargetToEnable();
-                }
+                // Perform a check on if a new target should be enabled
+                targetManager.performNewEnabledTargetCheck();
 
                 canLean = false;
                 Invoke("allowPlayerToLean", enableLeanDelay);
@@ -279,6 +255,16 @@ public class PlayerCharacter : MonoBehaviour
         }
     }
 
+    // Check if the player leaned in the wrong direction
+    private void checkIfPlayerLeanedInWrongDirection(LanePositions laneToCheck)
+    {
+        // If the current target to destroy is not in the lane to check
+        // Destroy the current target
+        if (targetManager.targetToDestroy.lanePosition != laneToCheck)
+        {
+            print("Wrong Position!");
+        }
+    }
 
     // Allow the player to lean
     private void allowPlayerToLean()

@@ -93,4 +93,15 @@ public class TargetManager : MonoBehaviour
             }
         }
     }
+
+    // Perform a check on if a new target should be enabled
+    public void performNewEnabledTargetCheck()
+    {
+        // If the current target to destroy is disabled
+        // Enable a new target
+        if (targetToDestroy.isEnabled == false)
+        {
+            selectTargetToEnable();
+        }
+    }
 }
