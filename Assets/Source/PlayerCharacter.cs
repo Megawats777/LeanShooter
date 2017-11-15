@@ -146,10 +146,10 @@ public class PlayerCharacter : MonoBehaviour
             {
                 // If the current target to destroy is not in the middle lane
                 // Destroy the current target
-                if (targetManager.targetToDestroy.lanePosition != LanePositions.Middle)
-                {
-                    targetManager.targetToDestroy.disableTarget();
-                }
+                //if (targetManager.targetToDestroy.lanePosition != LanePositions.Middle)
+                //{
+                //    targetManager.targetToDestroy.disableTarget();
+                //}
 
                 canFire = true;
                 isLeaningUp = true;
@@ -168,8 +168,13 @@ public class PlayerCharacter : MonoBehaviour
                 isLeaningUp = false;
                 position = startingPos;
 
-                
-                targetManager.selectTargetToEnable();
+                // If the current target to destroy is disabled
+                // Enable a new target
+                if (targetManager.targetToDestroy.isEnabled == false)
+                {
+                    targetManager.selectTargetToEnable();
+                }
+
                 canLean = false;
                 Invoke("allowPlayerToLean", enableLeanDelay);
             }
@@ -188,10 +193,10 @@ public class PlayerCharacter : MonoBehaviour
             {
                 // If the current target to destroy is not in the left lane
                 // Destroy the current target
-                if (targetManager.targetToDestroy.lanePosition != LanePositions.Left)
-                {
-                    targetManager.targetToDestroy.disableTarget();
-                }
+                //if (targetManager.targetToDestroy.lanePosition != LanePositions.Left)
+                //{
+                //    targetManager.targetToDestroy.disableTarget();
+                //}
 
 
                 canFire = true;
@@ -212,7 +217,13 @@ public class PlayerCharacter : MonoBehaviour
                 position = startingPos;
 
 
-                targetManager.selectTargetToEnable();
+                // If the current target to destroy is disabled
+                // Enable a new target
+                if (targetManager.targetToDestroy.isEnabled == false)
+                {
+                    targetManager.selectTargetToEnable();
+                }
+
                 canLean = false;
                 Invoke("allowPlayerToLean", enableLeanDelay);
             }
@@ -231,10 +242,10 @@ public class PlayerCharacter : MonoBehaviour
             {
                 // If the current target to destroy is not in the right lane
                 // Destroy the current target
-                if (targetManager.targetToDestroy.lanePosition != LanePositions.Right)
-                {
-                    targetManager.targetToDestroy.disableTarget();
-                }
+                //if (targetManager.targetToDestroy.lanePosition != LanePositions.Right)
+                //{
+                //    targetManager.targetToDestroy.disableTarget();
+                //}
 
 
                 canFire = true;
@@ -255,7 +266,13 @@ public class PlayerCharacter : MonoBehaviour
                 position = startingPos;
 
 
-                targetManager.selectTargetToEnable();
+                // If the current target to destroy is disabled
+                // Enable a new target
+                if (targetManager.targetToDestroy.isEnabled == false)
+                {
+                    targetManager.selectTargetToEnable();
+                }
+
                 canLean = false;
                 Invoke("allowPlayerToLean", enableLeanDelay);
             }
