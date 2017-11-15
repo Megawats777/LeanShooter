@@ -168,6 +168,7 @@ public class PlayerCharacter : MonoBehaviour
                 isLeaningUp = false;
                 position = startingPos;
 
+                
                 targetManager.selectTargetToEnable();
                 canLean = false;
                 Invoke("allowPlayerToLean", enableLeanDelay);
@@ -210,6 +211,7 @@ public class PlayerCharacter : MonoBehaviour
                 isLeaningLeft = false;
                 position = startingPos;
 
+
                 targetManager.selectTargetToEnable();
                 canLean = false;
                 Invoke("allowPlayerToLean", enableLeanDelay);
@@ -251,6 +253,7 @@ public class PlayerCharacter : MonoBehaviour
                 canFire = false;
                 isLeaningRight = false;
                 position = startingPos;
+
 
                 targetManager.selectTargetToEnable();
                 canLean = false;
