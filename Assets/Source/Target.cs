@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.UI;
 using UnityEngine;
 
 public class Target : MonoBehaviour
@@ -8,6 +9,8 @@ public class Target : MonoBehaviour
     public int maxHealth = 2;
     public int minHealth = 1;
     private int health = 2;
+    [SerializeField]
+    private Text healthDisplayText;
 
     // Scale animation speed
     public float scaleAnimSpeed = 8.0f;
@@ -33,7 +36,10 @@ public class Target : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-
+        if (healthDisplayText == null)
+        {
+            print("Test");
+        }
     }
 
     // Update is called once per frame
@@ -58,16 +64,20 @@ public class Target : MonoBehaviour
     public void damageTarget()
     {
         health--;
+        updateHealthDisplayText();
+        print(lanePosition.ToString() + " target damaged!");
 
         // If the health of the target is greater than 0
         if (health > 0)
         {
-            print(lanePosition.ToString() + " target damaged!");
+
         }
 
         // If the health of the target is less than or equal to 0
         else if (health <= 0)
         {
+            print("Target Destroyed");
+
             // Disable this target
             disableTarget();
         }
@@ -101,7 +111,12 @@ public class Target : MonoBehaviour
     {
         // Pick a random number between the min and max health value for this target's health value
         health = Random.Range(minHealth, maxHealth + 1);
-        print(health.ToString());
+        updateHealthDisplayText();
     }
 
+    // Update the health display text
+    private void updateHealthDisplayText()
+    {
+        healthDisplayText.text = health.ToString();
+    }
 }
