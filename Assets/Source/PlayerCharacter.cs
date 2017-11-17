@@ -118,8 +118,11 @@ public class PlayerCharacter : MonoBehaviour
                 print("No target hit");
             }
 
-            // Do not allow the player to fire
-            canFire = false;
+            // If a target was hit
+            else if (targetHit == true)
+            {
+                print("Target Hit!");
+            }
         }
 
         // Always blend to the player's position
