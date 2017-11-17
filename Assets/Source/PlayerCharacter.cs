@@ -69,6 +69,7 @@ public class PlayerCharacter : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space) && canFire == true)
         {
             targetHit = false;
+            Target designatedTarget = null;
 
             // Find all the targets in the level
             foreach (Target currentTarget in FindObjectsOfType<Target>())
@@ -80,10 +81,8 @@ public class PlayerCharacter : MonoBehaviour
                     // Mark that a target was hit
                     targetHit = true;
 
-                    // Add to the player's score
-
-                    // Destroy the current target
-                    currentTarget.disableTarget();
+                    // Set the designated target
+                    designatedTarget = currentTarget;
                 }
 
                 // If one of the target's lane position is left and the player is leaning left and the current target is enabled
@@ -92,10 +91,8 @@ public class PlayerCharacter : MonoBehaviour
                     // Mark that a target was hit
                     targetHit = true;
 
-                    // Add to the player's score
-
-                    // Destroy the current target
-                    currentTarget.disableTarget();
+                    // Set the designated target
+                    designatedTarget = currentTarget;
                 }
 
                 // If one of the target's lane position is right and the player is leaning right and the current target is enabled
@@ -104,10 +101,8 @@ public class PlayerCharacter : MonoBehaviour
                     // Mark that a target was hit
                     targetHit = true;
 
-                    // Add to the player's score
-
-                    // Destroy the current target
-                    currentTarget.disableTarget();
+                    // Set the designated target
+                    designatedTarget = currentTarget;
                 }
             }
 
@@ -122,6 +117,9 @@ public class PlayerCharacter : MonoBehaviour
             else if (targetHit == true)
             {
                 print("Target Hit!");
+
+                // Damage the designated target
+                designatedTarget.damageTarget();
             }
         }
 

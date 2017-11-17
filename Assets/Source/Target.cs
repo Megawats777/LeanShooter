@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class Target : MonoBehaviour
 {
+    // Health value properties
+    public int maxHealth = 2;
+    public int minHealth = 1;
+    private int health = 2;
+
     // Scale animation speed
     public float scaleAnimSpeed = 8.0f;
 
@@ -49,9 +54,31 @@ public class Target : MonoBehaviour
         }
     }
 
+    // Damage this target
+    public void damageTarget()
+    {
+        health--;
+
+        // If the health of the target is greater than 0
+        if (health > 0)
+        {
+            print(lanePosition.ToString() + " target damaged!");
+        }
+
+        // If the health of the target is less than or equal to 0
+        else if (health <= 0)
+        {
+            // Disable this target
+            disableTarget();
+        }
+    }
+
     // Enable the target
     public void enableTarget()
     {
+        // Set the health of this target
+        setTargetHealth();
+
         // Set the scale of the target to 1
         scale = Vector3.one;
 
@@ -68,4 +95,13 @@ public class Target : MonoBehaviour
         // Set this target as disabled
         isEnabled = false;
     }
+
+    // Set the health of this target
+    public void setTargetHealth()
+    {
+        // Pick a random number between the min and max health value for this target's health value
+        health = Random.Range(minHealth, maxHealth + 1);
+        print(health.ToString());
+    }
+
 }
