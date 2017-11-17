@@ -64,64 +64,10 @@ public class PlayerCharacter : MonoBehaviour
         // Control lean actions
         controlLeanActions();
 
+        // Control firing action
+        controlFiringAction();
 
-        // If the player presses the fire button and can fire
-        if (Input.GetKeyDown(KeyCode.Space) && canFire == true)
-        {
-            targetHit = false;
-            Target designatedTarget = null;
-
-            // Find all the targets in the level
-            foreach (Target currentTarget in FindObjectsOfType<Target>())
-            {
-
-                // If one of the target's lane position is middle and the player is leaning up and the current target is enabled
-                if (currentTarget.lanePosition == LanePositions.Middle && isLeaningUp == true && currentTarget.isEnabled == true)
-                {
-                    // Mark that a target was hit
-                    targetHit = true;
-
-                    // Set the designated target
-                    designatedTarget = currentTarget;
-                }
-
-                // If one of the target's lane position is left and the player is leaning left and the current target is enabled
-                else if (currentTarget.lanePosition == LanePositions.Left && isLeaningLeft == true && currentTarget.isEnabled == true)
-                {
-                    // Mark that a target was hit
-                    targetHit = true;
-
-                    // Set the designated target
-                    designatedTarget = currentTarget;
-                }
-
-                // If one of the target's lane position is right and the player is leaning right and the current target is enabled
-                else if (currentTarget.lanePosition == LanePositions.Right && isLeaningRight == true && currentTarget.isEnabled == true)
-                {
-                    // Mark that a target was hit
-                    targetHit = true;
-
-                    // Set the designated target
-                    designatedTarget = currentTarget;
-                }
-            }
-
-            // If a target was not hit
-            if (targetHit == false)
-            {
-                // Reduce the player's score
-                print("No target hit");
-            }
-
-            // If a target was hit
-            else if (targetHit == true)
-            {
-                print("Target Hit!");
-
-                // Damage the designated target
-                designatedTarget.damageTarget();
-            }
-        }
+        
 
         // Always blend to the player's position
         transform.position = Vector3.Lerp(transform.position, position, Time.deltaTime * leanAnimSpeed);
@@ -271,6 +217,70 @@ public class PlayerCharacter : MonoBehaviour
     private void allowPlayerToLean()
     {
         canLean = true;
+    }
+
+
+
+    // Control firing action
+    private void controlFiringAction()
+    {
+        // If the player presses the fire button and can fire
+        if (Input.GetButtonDown("Fire") && canFire == true)
+        {
+            targetHit = false;
+            Target designatedTarget = null;
+
+            // Find all the targets in the level
+            foreach (Target currentTarget in FindObjectsOfType<Target>())
+            {
+
+                // If one of the target's lane position is middle and the player is leaning up and the current target is enabled
+                if (currentTarget.lanePosition == LanePositions.Middle && isLeaningUp == true && currentTarget.isEnabled == true)
+                {
+                    // Mark that a target was hit
+                    targetHit = true;
+
+                    // Set the designated target
+                    designatedTarget = currentTarget;
+                }
+
+                // If one of the target's lane position is left and the player is leaning left and the current target is enabled
+                else if (currentTarget.lanePosition == LanePositions.Left && isLeaningLeft == true && currentTarget.isEnabled == true)
+                {
+                    // Mark that a target was hit
+                    targetHit = true;
+
+                    // Set the designated target
+                    designatedTarget = currentTarget;
+                }
+
+                // If one of the target's lane position is right and the player is leaning right and the current target is enabled
+                else if (currentTarget.lanePosition == LanePositions.Right && isLeaningRight == true && currentTarget.isEnabled == true)
+                {
+                    // Mark that a target was hit
+                    targetHit = true;
+
+                    // Set the designated target
+                    designatedTarget = currentTarget;
+                }
+            }
+
+            // If a target was not hit
+            if (targetHit == false)
+            {
+                // Reduce the player's score
+                print("No target hit");
+            }
+
+            // If a target was hit
+            else if (targetHit == true)
+            {
+                print("Target Hit!");
+
+                // Damage the designated target
+                designatedTarget.damageTarget();
+            }
+        }
     }
 
 
