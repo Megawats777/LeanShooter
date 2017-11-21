@@ -1,13 +1,24 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerCharacter : MonoBehaviour
 {
+    /*--Score system properties--*/
+
+    [Header("Score system properties")]
+    private int score = 0;
+    private int scoreMultiplier = 1;
+
+    public Text scoreText;
+    public Text multiplierText;
+
     /*--Lean movement properties--*/
 
 
     // Can the player lean
+    [Header("Lean movement properties")]
     public bool canLean = true;
 
     // Lean enable delay
@@ -282,6 +293,69 @@ public class PlayerCharacter : MonoBehaviour
             }
         }
     }
+
+    // Increase the player's score
+    public void increaseScore(int increaseAmount)
+    {
+        setScore(score + increaseAmount);
+    }
+
+
+    // Decrease the player's score
+    public void decreaseScore(int decreaseAmount)
+    {
+        setScore(score - decreaseAmount);
+    }
+
+    // Set the player's score
+    public void setScore(int score)
+    {
+        this.score = score;
+        scoreText.text = this.score.ToString();
+    }
+
+    // Get the player's score
+    public int getScore()
+    {
+        return score;
+    }
+
+
+
+    // Increase the player's score multiplier
+    public void increaseScoreMulitplier(int increaseAmount)
+    {
+        setScoreMultiplier(scoreMultiplier + increaseAmount);
+    }
+
+    // Decrease the player's score multiplier
+    public void decreaseScoreMultiplier(int decreaseAmount)
+    {
+        // If the score multiplier minus the decrease amount is less than
+        // or equal to 0
+        // Set the decrease amount to be 0
+        if ((scoreMultiplier - decreaseAmount) <= 0)
+        {
+            decreaseAmount = 0;
+        }
+
+        setScoreMultiplier(scoreMultiplier - decreaseAmount);
+    }
+
+    // Reset the player's score multiplier
+    public void resetScoreMultiplier()
+    {
+        setScoreMultiplier(1);
+    }
+
+    // Set the player's score multiplier
+    public void setScoreMultiplier(int scoreMultiplier)
+    {
+        this.scoreMultiplier = scoreMultiplier;
+        multiplierText.text = this.scoreMultiplier.ToString();
+    }
+
+    // Get the player's score multiplier
 
 
     // Draw debug shapes
