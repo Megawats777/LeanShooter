@@ -303,6 +303,7 @@ public class PlayerCharacter : MonoBehaviour
     // Increase the player's score
     public void increaseScore(int increaseAmount)
     {
+        increaseAmount *= getScoreMultiplier();
         setScore(score + increaseAmount);
     }
 
@@ -357,12 +358,15 @@ public class PlayerCharacter : MonoBehaviour
     // Set the player's score multiplier
     public void setScoreMultiplier(int scoreMultiplier)
     {
-        this.scoreMultiplier = scoreMultiplier;
+        this.scoreMultiplier = Mathf.Clamp(scoreMultiplier, 0, 25);
         multiplierText.text = "x" + this.scoreMultiplier.ToString();
     }
 
     // Get the player's score multiplier
-
+    public int getScoreMultiplier()
+    {
+        return scoreMultiplier;
+    }
 
     // Draw debug shapes
     private void OnDrawGizmos()
