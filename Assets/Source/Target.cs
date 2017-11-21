@@ -26,11 +26,14 @@ public class Target : MonoBehaviour
     public LanePositions lanePosition;
 
 
+    /*--External references--*/
+    private PlayerCharacter player;
+
 
     // Called before start
     private void Awake()
     {
-
+        player = FindObjectOfType<PlayerCharacter>();
     }
 
     // Use this for initialization
@@ -70,12 +73,16 @@ public class Target : MonoBehaviour
         // If the health of the target is greater than 0
         if (health > 0)
         {
-
+            // Add to the player's score and multiplier
+            player.increaseScore(10);
+            player.increaseScoreMulitplier(1);
         }
 
         // If the health of the target is less than or equal to 0
         else if (health <= 0)
         {
+            player.increaseScore(20);
+            player.increaseScoreMulitplier(1);
             print("Target Destroyed");
 
             // Disable this target

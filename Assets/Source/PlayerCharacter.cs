@@ -59,11 +59,15 @@ public class PlayerCharacter : MonoBehaviour
     private void Awake()
     {
         targetManager = FindObjectOfType<TargetManager>();
+        scoreText = GameObject.FindGameObjectWithTag("ScoreText").GetComponent<Text>();
+        multiplierText = GameObject.FindGameObjectWithTag("MultiplierText").GetComponent<Text>();
     }
 
     // Use this for initialization
     void Start()
     {
+        setScore(0);
+        setScoreMultiplier(1);
         startingPos = transform.position;
         position = startingPos;
     }
@@ -217,9 +221,10 @@ public class PlayerCharacter : MonoBehaviour
     private void checkIfPlayerLeanedInWrongDirection(LanePositions laneToCheck)
     {
         // If the current target to destroy is not in the lane to check
-        // Destroy the current target
         if (targetManager.targetToDestroy.lanePosition != laneToCheck)
         {
+            decreaseScore(10);
+            resetScoreMultiplier();
             print("Wrong Position!");
         }
     }
@@ -280,7 +285,8 @@ public class PlayerCharacter : MonoBehaviour
             if (targetHit == false)
             {
                 // Reduce the player's score
-                print("No target hit");
+                decreaseScore(10);
+                resetScoreMultiplier();
             }
 
             // If a target was hit
@@ -352,7 +358,7 @@ public class PlayerCharacter : MonoBehaviour
     public void setScoreMultiplier(int scoreMultiplier)
     {
         this.scoreMultiplier = scoreMultiplier;
-        multiplierText.text = this.scoreMultiplier.ToString();
+        multiplierText.text = "x" + this.scoreMultiplier.ToString();
     }
 
     // Get the player's score multiplier
