@@ -5,7 +5,14 @@ using UnityEngine;
 
 public class Target : MonoBehaviour
 {
-    // Health value properties
+    /*--Score properties--*/
+
+    [Header("Score Properties")]
+    public int damagedScoreValue = 10;
+    public int destroyedScoreValue = 20;
+
+
+    /*--Health properties--*/
     public int maxHealth = 2;
     public int minHealth = 1;
     private int health = 2;
@@ -74,14 +81,14 @@ public class Target : MonoBehaviour
         if (health > 0)
         {
             // Add to the player's score and multiplier
-            player.increaseScore(10);
+            player.increaseScore(damagedScoreValue);
             player.increaseScoreMulitplier(1);
         }
 
         // If the health of the target is less than or equal to 0
         else if (health <= 0)
         {
-            player.increaseScore(20);
+            player.increaseScore(destroyedScoreValue);
             player.increaseScoreMulitplier(1);
             print("Target Destroyed");
 

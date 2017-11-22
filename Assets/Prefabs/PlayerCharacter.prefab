@@ -51,9 +51,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 275825ec79e5b36449506f0e0862c35e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  scoreMultiplierLimit: 45
+  scorePenaltyValue: 50
   canLean: 1
   enableLeanDelay: 0.081
   leanAnimSpeed: 20
   topLeanNavPoint: {fileID: 0}
   leftLeanNavPoint: {fileID: 0}
   rightLeanNavPoint: {fileID: 0}
+  canFire: 0
+  targetHit: 0

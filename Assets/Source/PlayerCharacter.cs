@@ -7,12 +7,17 @@ public class PlayerCharacter : MonoBehaviour
 {
     /*--Score system properties--*/
 
-    [Header("Score system properties")]
     private int score = 0;
     private int scoreMultiplier = 1;
 
-    public Text scoreText;
-    public Text multiplierText;
+    [Header("Score system properties")]
+    [SerializeField]
+    private int scoreMultiplierLimit = 25;
+    [SerializeField]
+    private int scorePenaltyValue = 50;
+
+    private Text scoreText;
+    private Text multiplierText;
 
     /*--Lean movement properties--*/
 
@@ -223,7 +228,7 @@ public class PlayerCharacter : MonoBehaviour
         // If the current target to destroy is not in the lane to check
         if (targetManager.targetToDestroy.lanePosition != laneToCheck)
         {
-            decreaseScore(10);
+            decreaseScore(scorePenaltyValue);
             resetScoreMultiplier();
             print("Wrong Position!");
         }
@@ -285,7 +290,7 @@ public class PlayerCharacter : MonoBehaviour
             if (targetHit == false)
             {
                 // Reduce the player's score
-                decreaseScore(10);
+                decreaseScore(scorePenaltyValue);
                 resetScoreMultiplier();
             }
 
@@ -358,7 +363,7 @@ public class PlayerCharacter : MonoBehaviour
     // Set the player's score multiplier
     public void setScoreMultiplier(int scoreMultiplier)
     {
-        this.scoreMultiplier = Mathf.Clamp(scoreMultiplier, 0, 25);
+        this.scoreMultiplier = Mathf.Clamp(scoreMultiplier, 0, scoreMultiplierLimit);
         multiplierText.text = "x" + this.scoreMultiplier.ToString();
     }
 
