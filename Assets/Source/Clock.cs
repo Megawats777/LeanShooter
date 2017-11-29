@@ -14,10 +14,14 @@ public class Clock : MonoBehaviour
     private Text clockText;
 
 
+    /*--External references--*/
+    GameStateController gameStateController;
+
     // Called before start
     private void Awake()
     {
         clockText = GameObject.FindGameObjectWithTag("ClockText").GetComponent<Text>();
+        gameStateController = FindObjectOfType<GameStateController>();
     }
 
 
@@ -26,7 +30,6 @@ public class Clock : MonoBehaviour
     {
         currentTime = startingTime;
         clockText.text = currentTime.ToString();
-        startClock();
     }
 
     // Update is called once per frame
@@ -60,6 +63,7 @@ public class Clock : MonoBehaviour
         if (currentTime == 0)
         {
             stopClock();
+            gameStateController.endGame();
             print("Game ended");
         }
     }

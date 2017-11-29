@@ -5,6 +5,9 @@ using UnityEngine.UI;
 
 public class PlayerCharacter : MonoBehaviour
 {
+    // Is input enabled
+    public bool isInputEnabled = false;
+
     /*--Score system properties--*/
 
     private int score = 0;
@@ -81,13 +84,15 @@ public class PlayerCharacter : MonoBehaviour
     void Update()
     {
 
-        // Control lean actions
-        controlLeanActions();
+        if (isInputEnabled == true)
+        {
+            // Control lean actions
+            controlLeanActions();
 
-        // Control firing action
-        controlFiringAction();
+            // Control firing action
+            controlFiringAction();
+        }
 
-        
 
         // Always blend to the player's position
         transform.position = Vector3.Lerp(transform.position, position, Time.deltaTime * leanAnimSpeed);
