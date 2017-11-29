@@ -584,6 +584,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   contentRoot: {fileID: 1543866192177828}
+  restartButton: {fileID: 114120472139839314}
+  quitButton: {fileID: 114204061558800348}
 --- !u!114 &114204061558800348
 MonoBehaviour:
   m_ObjectHideFlags: 1
