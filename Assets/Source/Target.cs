@@ -80,7 +80,6 @@ public class Target : MonoBehaviour
         if (health <= 0)
         {
             player.increaseScore(1);
-            player.increaseScoreMulitplier(1);
             print("Target Destroyed");
 
             // Disable this target

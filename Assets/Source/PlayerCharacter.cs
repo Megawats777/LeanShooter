@@ -11,16 +11,7 @@ public class PlayerCharacter : MonoBehaviour
     /*--Score system properties--*/
 
     private int score = 0;
-    private int scoreMultiplier = 1;
-
-    [Header("Score system properties")]
-    [SerializeField]
-    private int scoreMultiplierLimit = 25;
-    [SerializeField]
-    private int scorePenaltyValue = 50;
-
     private Text scoreText;
-    private Text multiplierText;
 
     /*--Lean movement properties--*/
 
@@ -61,21 +52,20 @@ public class PlayerCharacter : MonoBehaviour
 
     // External references
     private TargetManager targetManager;
-
+    private GameStateController gameStateController;
 
     // Called before start
     private void Awake()
     {
         targetManager = FindObjectOfType<TargetManager>();
+        gameStateController = FindObjectOfType<GameStateController>();
         scoreText = GameObject.FindGameObjectWithTag("ScoreText").GetComponent<Text>();
-        multiplierText = GameObject.FindGameObjectWithTag("MultiplierText").GetComponent<Text>();
     }
 
     // Use this for initialization
     void Start()
     {
         setScore(0);
-        setScoreMultiplier(1);
         startingPos = transform.position;
         position = startingPos;
     }
@@ -234,6 +224,7 @@ public class PlayerCharacter : MonoBehaviour
         if (targetManager.targetToDestroy.lanePosition != laneToCheck)
         {
             print("Wrong Position!");
+            gameStateController.endGame();
         }
     }
 
@@ -293,6 +284,7 @@ public class PlayerCharacter : MonoBehaviour
             if (targetHit == false)
             {
                 print("No target hit");
+                gameStateController.endGame();
             }
 
             // If a target was hit
@@ -331,48 +323,7 @@ public class PlayerCharacter : MonoBehaviour
     {
         return score;
     }
-
-
-
-    // Increase the player's score multiplier
-    public void increaseScoreMulitplier(int increaseAmount)
-    {
-        setScoreMultiplier(scoreMultiplier + increaseAmount);
-    }
-
-    // Decrease the player's score multiplier
-    public void decreaseScoreMultiplier(int decreaseAmount)
-    {
-        // If the score multiplier minus the decrease amount is less than
-        // or equal to 0
-        // Set the decrease amount to be 0
-        if ((scoreMultiplier - decreaseAmount) <= 0)
-        {
-            decreaseAmount = 0;
-        }
-
-        setScoreMultiplier(scoreMultiplier - decreaseAmount);
-    }
-
-    // Reset the player's score multiplier
-    public void resetScoreMultiplier()
-    {
-        setScoreMultiplier(1);
-    }
-
-    // Set the player's score multiplier
-    public void setScoreMultiplier(int scoreMultiplier)
-    {
-        this.scoreMultiplier = Mathf.Clamp(scoreMultiplier, 0, scoreMultiplierLimit);
-        multiplierText.text = "x" + this.scoreMultiplier.ToString();
-    }
-
-    // Get the player's score multiplier
-    public int getScoreMultiplier()
-    {
-        return scoreMultiplier;
-    }
-
+    
     // Draw debug shapes
     private void OnDrawGizmos()
     {
