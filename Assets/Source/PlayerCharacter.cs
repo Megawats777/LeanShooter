@@ -233,8 +233,6 @@ public class PlayerCharacter : MonoBehaviour
         // If the current target to destroy is not in the lane to check
         if (targetManager.targetToDestroy.lanePosition != laneToCheck)
         {
-            decreaseScore(scorePenaltyValue);
-            resetScoreMultiplier();
             print("Wrong Position!");
         }
     }
@@ -294,9 +292,7 @@ public class PlayerCharacter : MonoBehaviour
             // If a target was not hit
             if (targetHit == false)
             {
-                // Reduce the player's score
-                decreaseScore(scorePenaltyValue);
-                resetScoreMultiplier();
+                print("No target hit");
             }
 
             // If a target was hit
@@ -313,7 +309,6 @@ public class PlayerCharacter : MonoBehaviour
     // Increase the player's score
     public void increaseScore(int increaseAmount)
     {
-        increaseAmount *= getScoreMultiplier();
         setScore(score + increaseAmount);
     }
 

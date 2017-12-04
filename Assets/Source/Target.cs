@@ -77,23 +77,19 @@ public class Target : MonoBehaviour
         updateHealthDisplayText();
         print(lanePosition.ToString() + " target damaged!");
 
-        // If the health of the target is greater than 0
-        if (health > 0)
+        if (health <= 0)
         {
-            // Add to the player's score and multiplier
-            player.increaseScore(damagedScoreValue);
-            player.increaseScoreMulitplier(1);
-        }
-
-        // If the health of the target is less than or equal to 0
-        else if (health <= 0)
-        {
-            player.increaseScore(destroyedScoreValue);
+            player.increaseScore(1);
             player.increaseScoreMulitplier(1);
             print("Target Destroyed");
 
             // Disable this target
             disableTarget();
+        }
+
+        else if (health > 0)
+        {
+            print("Target damaged");
         }
     }
 
