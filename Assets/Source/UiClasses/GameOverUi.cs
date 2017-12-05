@@ -11,7 +11,7 @@ public class GameOverUi : UiBase
     /*--Ui element references--*/
     public Button restartButton;
     public Button quitButton;
-
+    public Text title;
 
     // Called before start
     private void Awake()
@@ -22,7 +22,7 @@ public class GameOverUi : UiBase
     // Use this for initialization
     void Start()
     {
-        
+        base.Start();
         hideUi();
 
         restartButton.onClick.AddListener(delegate

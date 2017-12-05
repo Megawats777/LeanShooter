@@ -274,7 +274,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1555922054553028
 GameObject:
   m_ObjectHideFlags: 0
@@ -570,6 +570,7 @@ MonoBehaviour:
   contentRoot: {fileID: 1543866192177828}
   restartButton: {fileID: 114120472139839314}
   quitButton: {fileID: 114204061558800348}
+  title: {fileID: 114505789663093122}
 --- !u!114 &114204061558800348
 MonoBehaviour:
   m_ObjectHideFlags: 1
