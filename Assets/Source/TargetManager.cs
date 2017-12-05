@@ -5,7 +5,7 @@ using UnityEngine;
 public class TargetManager : MonoBehaviour
 {
     // A list of all the target's in the level
-    private Target[] targetList;
+    public Target[] targetList;
 
     // The target to destroy
     [HideInInspector]
@@ -31,7 +31,7 @@ public class TargetManager : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        selectTargetToEnable();
+        
     }
 
     // Update is called once per frame

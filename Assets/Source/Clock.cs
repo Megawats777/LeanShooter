@@ -7,7 +7,8 @@ public class Clock : MonoBehaviour
 {
     /*--Time Properties--*/
     public int startingTime = 60;
-    private int currentTime = 0;
+    [HideInInspector]
+    public int currentTime = 0;
 
 
     /*--UI Element references--*/
@@ -66,5 +67,11 @@ public class Clock : MonoBehaviour
             gameStateController.endGame();
             print("Game ended");
         }
+    }
+
+    // Update clock text display
+    public void updateClockTextDisplay()
+    {
+        clockText.text = currentTime.ToString();
     }
 }

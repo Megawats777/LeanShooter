@@ -13,6 +13,7 @@ public class GameStateController : MonoBehaviour
     /*--External references--*/
     PlayerCharacter player;
     Clock clock;
+    TargetManager targetManager;
 
     private void Awake()
     {
@@ -21,6 +22,7 @@ public class GameStateController : MonoBehaviour
 
         player = FindObjectOfType<PlayerCharacter>();
         clock = FindObjectOfType<Clock>();
+        targetManager = FindObjectOfType<TargetManager>();
     }
 
     // Use for initialization
@@ -35,12 +37,30 @@ public class GameStateController : MonoBehaviour
     {
         player.isInputEnabled = true;
         clock.startClock();
+        gameplayUiRef.showUi();
+        targetManager.selectTargetToEnable();
     }
 
-    // Pause the game
-    public void pauseGame()
+    // Restart the game
+    public void restartGame()
     {
+        // Set the player's desired location to be it's starting point
+        player.position = player.startingPos;
 
+        // Disable all targets
+        foreach (Target target in targetManager.targetList)
+        {
+            target.disableTarget();
+        }
+
+        clock.currentTime = clock.startingTime;
+        clock.updateClockTextDisplay();
+
+        // Hide the game over ui
+        gameOverUiRef.hideUi();
+
+        // After a delay start the game again
+        Invoke("startGame", 2.0f);
     }
 
     // End the game

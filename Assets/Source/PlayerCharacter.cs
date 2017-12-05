@@ -46,8 +46,8 @@ public class PlayerCharacter : MonoBehaviour
     public bool targetHit = false;
 
     // Player status variables
-    private Vector3 startingPos;
-    private Vector3 position;
+    public Vector3 startingPos;
+    public Vector3 position;
 
 
     // External references
