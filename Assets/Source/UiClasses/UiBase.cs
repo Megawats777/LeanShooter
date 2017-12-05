@@ -10,13 +10,13 @@ public class UiBase : MonoBehaviour
     // Show Ui
     public virtual void showUi()
     {
-        contentRoot.SetActive(true);
+        contentRoot.transform.localScale = Vector3.one;
     }
 
     // Hide Ui
     public virtual void hideUi()
     {
-        contentRoot.SetActive(false);
+        contentRoot.transform.localScale = Vector3.zero;
     }
     
 }

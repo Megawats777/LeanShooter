@@ -27,9 +27,9 @@ public class PlayerCharacter : MonoBehaviour
     public float leanAnimSpeed = 10.0f;
 
     // Lean position status variables
-    private bool isLeaningUp = false;
-    private bool isLeaningLeft = false;
-    private bool isLeaningRight = false;
+    public bool isLeaningUp = false;
+    public bool isLeaningLeft = false;
+    public bool isLeaningRight = false;
 
 
     // Lean nav point references
@@ -46,9 +46,11 @@ public class PlayerCharacter : MonoBehaviour
     public bool targetHit = false;
 
     // Player status variables
-    private Vector3 startingPos;
-    private Vector3 position;
+    public Vector3 startingPos;
+    public Vector3 position;
 
+    [HideInInspector]
+    public bool wasGameRestarted = false;
 
     // External references
     private TargetManager targetManager;
@@ -129,8 +131,16 @@ public class PlayerCharacter : MonoBehaviour
                 // Perform a check on if a new target should be enabled
                 targetManager.performNewEnabledTargetCheck();
 
-                canLean = false;
-                Invoke("allowPlayerToLean", enableLeanDelay);
+                if (wasGameRestarted == false)
+                {
+                    canLean = false;
+                    Invoke("allowPlayerToLean", enableLeanDelay);
+                }
+
+                else
+                {
+                    wasGameRestarted = false;
+                }
             }
         }
     }
@@ -170,8 +180,16 @@ public class PlayerCharacter : MonoBehaviour
                 // Perform a check on if a new target should be enabled
                 targetManager.performNewEnabledTargetCheck();
 
-                canLean = false;
-                Invoke("allowPlayerToLean", enableLeanDelay);
+                if (wasGameRestarted == false)
+                {
+                    canLean = false;
+                    Invoke("allowPlayerToLean", enableLeanDelay);
+                }
+
+                else
+                {
+                    wasGameRestarted = false;
+                }
             }
         }
     }
@@ -211,8 +229,16 @@ public class PlayerCharacter : MonoBehaviour
                 // Perform a check on if a new target should be enabled
                 targetManager.performNewEnabledTargetCheck();
 
-                canLean = false;
-                Invoke("allowPlayerToLean", enableLeanDelay);
+                if (wasGameRestarted == false)
+                {
+                    canLean = false;
+                    Invoke("allowPlayerToLean", enableLeanDelay);
+                }
+
+                else
+                {
+                    wasGameRestarted = false;
+                }
             }
         }
     }

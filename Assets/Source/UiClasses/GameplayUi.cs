@@ -6,7 +6,7 @@ public class GameplayUi : UiBase
 {
     private void Start()
     {
-        showUi();
+        
     }
 
 }
