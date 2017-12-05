@@ -36,6 +36,7 @@ public class GameStateController : MonoBehaviour
     public void startGame()
     {
         player.isInputEnabled = true;
+        
         clock.startClock();
         gameplayUiRef.showUi();
         targetManager.selectTargetToEnable();
@@ -45,7 +46,10 @@ public class GameStateController : MonoBehaviour
     public void restartGame()
     {
         // Set the player's desired location to be it's starting point
-        player.position = player.startingPos;
+        player.position = player.startingPos;        
+        player.setScore(0);
+        player.wasGameRestarted = true;
+        player.canFire = false;
 
         // Disable all targets
         foreach (Target target in targetManager.targetList)
@@ -58,7 +62,7 @@ public class GameStateController : MonoBehaviour
 
         // Hide the game over ui
         gameOverUiRef.hideUi();
-
+        
         // After a delay start the game again
         Invoke("startGame", 2.0f);
     }
