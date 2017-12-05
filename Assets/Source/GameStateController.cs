@@ -54,7 +54,7 @@ public class GameStateController : MonoBehaviour
     }
 
     // End the game
-    public void endGame()
+    public void endGame(bool playerMadeMistake)
     {
         player.isInputEnabled = false;
         clock.stopClock();
@@ -63,18 +63,25 @@ public class GameStateController : MonoBehaviour
         gameplayUiRef.hideUi();
         gameOverUiRef.showUi();
 
-        // If the player has a equal or higher score than the goal
-        if (player.getScore() >= scoreGoalManager.scoreGoal)
+        if (playerMadeMistake == false)
         {
-            // Set the title of the game over ui to be "Goal Achieved"
-            gameOverUiRef.title.text = "Goal Achieved";
+            // If the player has a equal or higher score than the goal
+            if (player.getScore() >= scoreGoalManager.scoreGoal)
+            {
+                // Set the title of the game over ui to be "Goal Achieved"
+                gameOverUiRef.title.text = "Goal Achieved";
+            }
+
+            // Otherwise set the title of the game over ui to be "Goal Failed"
+            else
+            {
+                gameOverUiRef.title.text = "Goal Failed";
+            }
         }
-        
-        // Otherwise set the title of the game over ui to be "Goal Failed"
+
         else
         {
             gameOverUiRef.title.text = "Goal Failed";
         }
-
     }
 }

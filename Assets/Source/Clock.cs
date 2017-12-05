@@ -64,7 +64,7 @@ public class Clock : MonoBehaviour
         if (currentTime == 0)
         {
             stopClock();
-            gameStateController.endGame();
+            gameStateController.endGame(false);
             print("Game ended");
         }
     }

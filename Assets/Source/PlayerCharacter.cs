@@ -250,7 +250,7 @@ public class PlayerCharacter : MonoBehaviour
         if (targetManager.targetToDestroy.lanePosition != laneToCheck)
         {
             print("Wrong Position!");
-            gameStateController.endGame();
+            gameStateController.endGame(true);
         }
     }
 
@@ -310,7 +310,7 @@ public class PlayerCharacter : MonoBehaviour
             if (targetHit == false)
             {
                 print("No target hit");
-                gameStateController.endGame();
+                gameStateController.endGame(true);
             }
 
             // If a target was hit
