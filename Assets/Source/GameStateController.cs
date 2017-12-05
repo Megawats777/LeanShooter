@@ -37,12 +37,6 @@ public class GameStateController : MonoBehaviour
         clock.startClock();
     }
 
-    // Pause the game
-    public void pauseGame()
-    {
-
-    }
-
     // End the game
     public void endGame()
     {
@@ -52,5 +46,11 @@ public class GameStateController : MonoBehaviour
         // Set visibility of ui elements
         gameplayUiRef.hideUi();
         gameOverUiRef.showUi();
+    }
+
+    // Restart the game
+    public void restartGame()
+    {
+
     }
 }
