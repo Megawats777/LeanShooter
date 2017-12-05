@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameStateController : MonoBehaviour
 {
@@ -45,26 +46,7 @@ public class GameStateController : MonoBehaviour
     // Restart the game
     public void restartGame()
     {
-        // Set the player's desired location to be it's starting point
-        player.position = player.startingPos;        
-        player.setScore(0);
-        player.wasGameRestarted = true;
-        player.canFire = false;
-
-        // Disable all targets
-        foreach (Target target in targetManager.targetList)
-        {
-            target.disableTarget();
-        }
-
-        clock.currentTime = clock.startingTime;
-        clock.updateClockTextDisplay();
-
-        // Hide the game over ui
-        gameOverUiRef.hideUi();
-        
-        // After a delay start the game again
-        Invoke("startGame", 2.0f);
+        SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().name);
     }
 
     // End the game
