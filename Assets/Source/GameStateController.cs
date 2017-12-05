@@ -15,7 +15,9 @@ public class GameStateController : MonoBehaviour
     PlayerCharacter player;
     Clock clock;
     TargetManager targetManager;
+    ScoreGoalManager scoreGoalManager;
 
+    // Called before start
     private void Awake()
     {
         gameplayUiRef = FindObjectOfType<GameplayUi>();
@@ -24,6 +26,7 @@ public class GameStateController : MonoBehaviour
         player = FindObjectOfType<PlayerCharacter>();
         clock = FindObjectOfType<Clock>();
         targetManager = FindObjectOfType<TargetManager>();
+        scoreGoalManager = FindObjectOfType<ScoreGoalManager>();
     }
 
     // Use for initialization
@@ -37,7 +40,8 @@ public class GameStateController : MonoBehaviour
     public void startGame()
     {
         player.isInputEnabled = true;
-        
+
+        scoreGoalManager.setScoreGoal();
         clock.startClock();
         gameplayUiRef.showUi();
         targetManager.selectTargetToEnable();

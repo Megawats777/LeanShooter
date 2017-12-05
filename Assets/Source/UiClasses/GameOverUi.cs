@@ -22,6 +22,7 @@ public class GameOverUi : UiBase
     // Use this for initialization
     void Start()
     {
+        
         hideUi();
 
         restartButton.onClick.AddListener(delegate
