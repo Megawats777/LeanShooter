@@ -77,10 +77,4 @@ public class GameStateController : MonoBehaviour
         gameplayUiRef.hideUi();
         gameOverUiRef.showUi();
     }
-
-    // Restart the game
-    public void restartGame()
-    {
-
-    }
 }
