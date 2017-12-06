@@ -83,5 +83,8 @@ public class GameStateController : MonoBehaviour
         {
             gameOverUiRef.title.text = "Goal Failed";
         }
+
+        gameOverUiRef.playerScoreText.text = player.getScore().ToString();
+        gameOverUiRef.scoreGoalText.text = scoreGoalManager.scoreGoal.ToString();
     }
 }

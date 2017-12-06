@@ -12,6 +12,9 @@ public class GameOverUi : UiBase
     public Button restartButton;
     public Button quitButton;
     public Text title;
+    public Text playerScoreText;
+    public Text scoreGoalText;
+
 
     // Called before start
     private void Awake()

@@ -7,9 +7,15 @@ public class UiBase : MonoBehaviour
     // Content root
     public GameObject contentRoot;
 
-    public void Start()
+    public void Awake()
     {
         contentRoot.SetActive(true);
+    }
+
+
+    public void Start()
+    {
+        
     }
 
     // Show Ui
