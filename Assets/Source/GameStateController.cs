@@ -59,10 +59,7 @@ public class GameStateController : MonoBehaviour
         player.isInputEnabled = false;
         clock.stopClock();
 
-        // Set visibility of ui elements
-        gameplayUiRef.hideUi();
-        gameOverUiRef.showUi();
-
+        
         if (playerMadeMistake == false)
         {
             // If the player has a equal or higher score than the goal
@@ -70,21 +67,29 @@ public class GameStateController : MonoBehaviour
             {
                 // Set the title of the game over ui to be "Goal Achieved"
                 gameOverUiRef.title.text = "Goal Achieved";
+                WinStreakManager.increaseWinStreak();
             }
 
             // Otherwise set the title of the game over ui to be "Goal Failed"
             else
             {
                 gameOverUiRef.title.text = "Goal Failed";
+                WinStreakManager.resetWinStreak();
             }
         }
 
         else
         {
             gameOverUiRef.title.text = "Goal Failed";
+            WinStreakManager.resetWinStreak();
         }
 
         gameOverUiRef.playerScoreText.text = player.getScore().ToString();
         gameOverUiRef.scoreGoalText.text = scoreGoalManager.scoreGoal.ToString();
+    
+        // Set visibility of ui elements
+        gameplayUiRef.hideUi();
+        gameOverUiRef.showUi();
+
     }
 }

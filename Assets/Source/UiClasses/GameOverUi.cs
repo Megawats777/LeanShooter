@@ -14,7 +14,7 @@ public class GameOverUi : UiBase
     public Text title;
     public Text playerScoreText;
     public Text scoreGoalText;
-
+    public Text winStreakText;
 
     // Called before start
     private void Awake()
@@ -37,6 +37,12 @@ public class GameOverUi : UiBase
         {
             Application.Quit();
         });
+    }
+
+    public override void showUi()
+    {
+        base.showUi();
+        winStreakText.text = WinStreakManager.getWinStreak().ToString();
     }
 
 

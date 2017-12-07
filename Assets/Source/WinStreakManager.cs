@@ -16,4 +16,14 @@ public class WinStreakManager : MonoBehaviour
     {
         winStreak = value; 
     }
+
+    public static void increaseWinStreak()
+    {
+        setWinStreak(getWinStreak() + 1);
+    }
+
+    public static void resetWinStreak()
+    {
+        setWinStreak(0);
+    }
 }
