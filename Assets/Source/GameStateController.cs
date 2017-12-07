@@ -74,14 +74,14 @@ public class GameStateController : MonoBehaviour
             else
             {
                 gameOverUiRef.title.text = "Goal Failed";
-                WinStreakManager.resetWinStreak();
+                gameOverUiRef.restartButton.gameObject.SetActive(false);
             }
         }
 
         else
         {
             gameOverUiRef.title.text = "Goal Failed";
-            WinStreakManager.resetWinStreak();
+            gameOverUiRef.restartButton.gameObject.SetActive(false);
         }
 
         gameOverUiRef.playerScoreText.text = player.getScore().ToString();

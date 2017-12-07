@@ -51,3 +51,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d2d33cc5336a464b9142b35fe7a2987, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  minScoreGoal: 5
+  maxScoreGoal: 8
+  scoreGoal: 0

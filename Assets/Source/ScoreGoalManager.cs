@@ -35,6 +35,15 @@ public class ScoreGoalManager : MonoBehaviour
     // Set the score goal
     public void setScoreGoal()
     {
+        for (int i = 0; i < WinStreakManager.getWinStreak(); i++)
+        {
+            minScoreGoal += Random.Range(4, 5);
+            maxScoreGoal += Random.Range(4, 5);
+        }
+
+        print("Min Score Goal: " + minScoreGoal);
+        print("Max Score Goal: " + maxScoreGoal);
+
         scoreGoal = Random.Range(minScoreGoal, maxScoreGoal);
         goalText.text = scoreGoal.ToString();
     }

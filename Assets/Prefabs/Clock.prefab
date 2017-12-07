@@ -51,4 +51,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ea7fd8f2186e7b4185e76993576758d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startingTime: 15
+  startingTime: 20
+  currentTime: 0
