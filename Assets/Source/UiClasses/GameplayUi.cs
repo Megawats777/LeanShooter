@@ -14,4 +14,16 @@ public class GameplayUi : UiBase
         winStreakText.text = WinStreakManager.getWinStreak().ToString();        
     }
 
+    // A function called every frame
+    void Update()
+    {
+        
+    }
+
+    // Set the content of the ui
+    private void updateUiContent()
+    {
+        
+    }
+
 }

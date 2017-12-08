@@ -11,17 +11,12 @@ public class Clock : MonoBehaviour
     public int currentTime = 0;
 
 
-    /*--UI Element references--*/
-    private Text clockText;
-
-
     /*--External references--*/
     GameStateController gameStateController;
 
     // Called before start
     private void Awake()
     {
-        clockText = GameObject.FindGameObjectWithTag("ClockText").GetComponent<Text>();
         gameStateController = FindObjectOfType<GameStateController>();
     }
 
@@ -29,8 +24,7 @@ public class Clock : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        currentTime = startingTime;
-        clockText.text = currentTime.ToString();
+
     }
 
     // Update is called once per frame
@@ -57,7 +51,6 @@ public class Clock : MonoBehaviour
     private void runClock()
     {
         currentTime--;
-        clockText.text = currentTime.ToString();
 
         // If the current time is 0
         // End the game
@@ -72,6 +65,6 @@ public class Clock : MonoBehaviour
     // Update clock text display
     public void updateClockTextDisplay()
     {
-        clockText.text = currentTime.ToString();
+
     }
 }

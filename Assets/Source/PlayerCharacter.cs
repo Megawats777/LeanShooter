@@ -11,7 +11,7 @@ public class PlayerCharacter : MonoBehaviour
     /*--Score system properties--*/
 
     private int score = 0;
-    private Text scoreText;
+
 
     /*--Lean movement properties--*/
 
@@ -61,7 +61,6 @@ public class PlayerCharacter : MonoBehaviour
     {
         targetManager = FindObjectOfType<TargetManager>();
         gameStateController = FindObjectOfType<GameStateController>();
-        scoreText = GameObject.FindGameObjectWithTag("ScoreText").GetComponent<Text>();
     }
 
     // Use this for initialization
@@ -341,7 +340,6 @@ public class PlayerCharacter : MonoBehaviour
     public void setScore(int score)
     {
         this.score = score;
-        scoreText.text = this.score.ToString();
     }
 
     // Get the player's score

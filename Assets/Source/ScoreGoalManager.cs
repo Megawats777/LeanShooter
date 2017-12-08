@@ -11,13 +11,11 @@ public class ScoreGoalManager : MonoBehaviour
     [HideInInspector]
     public int scoreGoal = 0;
 
-    // Ui References
-    private Text goalText;
 
     // Called before start
     private void Awake()
     {
-        goalText = GameObject.FindGameObjectWithTag("GoalText").GetComponent<Text>();   
+
     }
 
     // Use this for initialization
@@ -45,6 +43,5 @@ public class ScoreGoalManager : MonoBehaviour
         print("Max Score Goal: " + maxScoreGoal);
 
         scoreGoal = Random.Range(minScoreGoal, maxScoreGoal);
-        goalText.text = scoreGoal.ToString();
     }
 }
