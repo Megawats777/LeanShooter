@@ -24,7 +24,7 @@ public class Clock : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-
+        currentTime = startingTime;
     }
 
     // Update is called once per frame

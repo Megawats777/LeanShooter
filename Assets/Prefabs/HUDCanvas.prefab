@@ -571,6 +571,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   contentRoot: {fileID: 1110084121871818}
+  scoreText: {fileID: 114068389275389830}
+  timeText: {fileID: 114088122274861320}
+  scoreGoalText: {fileID: 114627465236143672}
   winStreakText: {fileID: 114953434130772380}
 --- !u!114 &114053533937261830
 MonoBehaviour:
