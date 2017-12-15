@@ -54,39 +54,26 @@ public class GameStateController : MonoBehaviour
     }
 
     // End the game
-    public void endGame(bool playerMadeMistake)
+    public void endGame()
     {
         player.isInputEnabled = false;
         clock.stopClock();
 
-        
-        if (playerMadeMistake == false)
-        {
-            // If the player has a equal or higher score than the goal
-            if (player.getScore() >= scoreGoalManager.scoreGoal)
-            {
-                // Set the title of the game over ui to be "Goal Achieved"
-                gameOverUiRef.title.text = "Goal Achieved";
-                WinStreakManager.increaseWinStreak();
-            }
 
-            // Otherwise set the title of the game over ui to be "Goal Failed"
-            else
-            {
-                gameOverUiRef.title.text = "Goal Failed";
-                gameOverUiRef.restartButton.gameObject.SetActive(false);
-            }
+        // If the player's score is greater or equal to the goal
+        if (player.getScore() >= scoreGoalManager.scoreGoal)
+        {
+            // They won the game
+            player.isWinner = true;
         }
 
+        // Other
         else
         {
-            gameOverUiRef.title.text = "Goal Failed";
-            gameOverUiRef.restartButton.gameObject.SetActive(false);
+            // They lost the game
+            player.isWinner = false;
         }
 
-        gameOverUiRef.playerScoreText.text = player.getScore().ToString();
-        gameOverUiRef.scoreGoalText.text = scoreGoalManager.scoreGoal.ToString();
-    
         // Set visibility of ui elements
         gameplayUiRef.hideUi();
         gameOverUiRef.showUi();

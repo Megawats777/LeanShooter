@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class GameOverUi : UiBase
 {
-    GameStateController gameStateController;
+    
 
     /*--Ui element references--*/
     public Button restartButton;
@@ -16,10 +16,18 @@ public class GameOverUi : UiBase
     public Text scoreGoalText;
     public Text winStreakText;
 
+    /*--External References--*/
+    PlayerCharacter player;
+    GameStateController gameStateController;
+    ScoreGoalManager scoreGoalManager;
+
     // Called before start
     private void Awake()
     {
+        base.Awake();
+        player = FindObjectOfType<PlayerCharacter>();
         gameStateController = FindObjectOfType<GameStateController>();
+        scoreGoalManager = FindObjectOfType<ScoreGoalManager>();
     }
 
     // Use this for initialization
@@ -43,6 +51,22 @@ public class GameOverUi : UiBase
     {
         base.showUi();
         winStreakText.text = WinStreakManager.getWinStreak().ToString();
+        scoreGoalText.text = scoreGoalManager.scoreGoal.ToString();
+        playerScoreText.text = player.getScore().ToString();
+
+        // If the player won
+        if (player.isWinner == true)
+        {
+            // Set the title text to be "you win"
+            title.text = "You Win";
+        }
+
+        // Otherwise
+        else
+        {
+            // Set the title text to be "you lose"
+            title.text = "You Lose";
+        }
     }
 
 

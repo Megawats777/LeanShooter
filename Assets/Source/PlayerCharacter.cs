@@ -5,6 +5,13 @@ using UnityEngine.UI;
 
 public class PlayerCharacter : MonoBehaviour
 {
+
+    // Did this player win
+    public bool isWinner = false;
+
+    // Did the player make a mistake
+    public bool madeMistake = false;
+
     // Is input enabled
     public bool isInputEnabled = false;
 
@@ -249,7 +256,8 @@ public class PlayerCharacter : MonoBehaviour
         if (targetManager.targetToDestroy.lanePosition != laneToCheck)
         {
             print("Wrong Position!");
-            gameStateController.endGame(true);
+            madeMistake = true;
+            gameStateController.endGame();
         }
     }
 
@@ -309,7 +317,8 @@ public class PlayerCharacter : MonoBehaviour
             if (targetHit == false)
             {
                 print("No target hit");
-                gameStateController.endGame(true);
+                madeMistake = true;
+                gameStateController.endGame();
             }
 
             // If a target was hit
